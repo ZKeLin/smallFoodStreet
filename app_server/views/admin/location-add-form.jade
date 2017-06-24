@@ -1,0 +1,35 @@
+extends layout
+
+block content
+	div.formBox.col-sm-12
+		.row.paddingTop20
+			.col-xs-12.col-md-12
+				form.form-horizontal(action='',method='post',role='form')
+					.form-group
+						label.col-xs-10.col-sm-2.control-label(for='name') 小食名称
+						.col-sm-10
+							input#name.form-control(name='name',placeholder="小食名称")
+					.form-group
+						label.col-sm-2.control-label(for='address') 小食地址
+						.col-sm-10
+							input.form-control(name='address',placeholder="小食地址")
+					.form-group
+						label.col-sm-2.control-label(for='facilities') 小食特色
+						.col-sm-10
+							input.form-control(name='facilities',placeholder="多个请用';'分割")
+					.form-group
+						label.col-sm-2.control-label(for='lng') 经度
+						.col-md-4.col-sm-8
+							input.form-control(onfocus="getLocation()",id="lng",name='lng',placeholder="点击即可显示当前经纬度，也可自己填写")
+					.form-group
+						label.col-sm-2.control-label(for='lat') 纬度
+						.col-md-4.col-sm-8
+							input.form-control(onfocus="getLocation()",id="lat",name='lat',placeholder="点击即可显示当前经纬度，也可自己填写")
+					.form-group
+						label.col-sm-2.control-label(for='opentime') 开放时间
+						.col-sm-10
+							textarea.form-control(name='opentime',rows="5",placeholder="注意：所有的符号都是英文符号，例如：[{\"days\": \"星期一-星期五\",\"opening\": \"7:00\",\"closing\": \"19:00\",\"closed\": false},{\"days\": \"星期六\",\"opening\": \"8:00\",\"closing\": \"19:00\",\"closed\": false},{\"days\": \"星期天\",\"closed\": true}]")
+					.has-error
+						span.control-label= warningContent
+					button.btn.btn-default.pull-right(type='submit',id="submitBtn") 添加小食
+			.col-xs-12.col-md-4

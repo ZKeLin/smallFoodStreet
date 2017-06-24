@@ -1,0 +1,34 @@
+doctype html
+html
+	head
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title= 小食街
+		link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/admin.css')
+	body
+		.navbar.navbar-default.navbar-fixed-top
+			.container
+				.navbar-header
+					a.navbar-brand(href='/') 小食街后台管理
+					button.navbar-toggle(type='button',data-toggle='collapse',data-target='#navbar-main')
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+				#navbar-main.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li
+							a(href='/') 首页
+						li
+							a(href='/') 关于
+		.container.marginTop50
+			block content
+
+			footer
+				.row
+					.col-xs-12
+						samll &copy; Liu Kelin 2017
+
+
+	script(src='/javascripts/jquery-1.11.1.min.js')
+	script(src='/bootstrap/js/bootstrap.min.js')
+	script(src='/javascripts/index.js')

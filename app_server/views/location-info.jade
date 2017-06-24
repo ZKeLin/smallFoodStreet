@@ -1,0 +1,65 @@
+extends layout
+
+include _includes/showHTMLfunction
+
+block content
+	.row.page-header
+		.col-lg-12
+			h1= name
+	.row
+		.col-xs-12.col-md-9
+			.row
+				.col-xs-12.col-sm-6
+					p.rating
+						+outputRating(rating)
+					p= address
+					.panel.panel-primary
+						.panel-heading
+							h2.panel-title 开放时间
+						.panel-body
+							each time in openingTime
+								p #{time.days} : 
+									if time.closed 
+										| closed
+									else
+										| #{time.opening} - #{time.closing}
+					.panel.panel-primary
+						.panel-heading
+							h2.panel-title 特色
+						.panel-body
+							each Facility in Facilities
+								span.label.label-warning
+									span.glyphicon.glyphicon-ok #{Facility}
+								&nbsp;&nbsp;
+				.col-xs-12.col-sm-6.location-map
+					.panel.panel-primary
+						.panel-heading
+							h2.panel-title 地图表示
+						.panel-body
+							img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center=#{coords[1]},#{coords[0]}&zoom=17&size=800x500&sensor=false&markers=#{coords[1]},#{coords[0]}&scale=2')
+			.row
+				.col-xs-12
+					.panel.panel-primary.review-panel
+						.panel-heading
+							a.btn.btn-default.pull-right(href='/location/#{id}/review/new') 添加评价
+							h2.panel-title 用户评价
+						.panel-body.review-container
+							each customerReview in customerReviews
+								.row
+									.review
+										.well.well-sm.review-header
+											span.rating
+												+outputRating(customerReview.rating)
+											span.reviewAuthor #{customerReview.author}
+											small.reviewTimestamp 
+												+formatDate(customerReview.timestamp)
+										.col-xs-12
+											p #{customerReview.reviewText}
+		.col-xs-12.col-md-3
+			p.lead 
+				i #{name} 
+				|  正在"小食街"这个平台，因为它有
+				each Facility in Facilities
+					em #{Facility},
+				|  你可以在那里享受这些，而没有人驱赶你
+			p 不论你喜欢与否，请你务必应定要评价，因为那是对我们最好的支持

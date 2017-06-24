@@ -1,0 +1,25 @@
+extends layout
+
+block content
+	h3.text-center 小食街列表
+	.panel.panel-default.marginTop20
+		table.table.table-striped
+			thead
+				tr 
+					td.text-center(width="10%") #
+					td.text-center(width="25%") 店名
+					td.text-center(width="35%") 地址
+					td.text-center(width="15%") 操作1
+					td.text-center(width="15%") 操作2
+			tbody
+				each data in datas
+					tr
+						td.text-center #{data._N}
+						td.text-center #{data.name}
+						td.text-center #{data.address}
+						td.text-center 
+							a(href="/admin/location/#{data._id}/delete") 删除
+						td.text-center 
+							a(href="#") 修改
+	.col-sm-12.text-center
+		a.btn.btn-primary.btn-lg(href="/admin/location") 添加美食
